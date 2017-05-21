@@ -3,8 +3,8 @@ import leveldb
 
 import logging
 import tempfile
-from hexagon import Hexagon
-from hexagon.utils import *
+from .hexagon import Hexagon
+from .hexagon.utils import *
 
 import mock
 import os

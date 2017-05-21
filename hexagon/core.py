@@ -19,7 +19,7 @@ def _computer_ordered_values_set(ordered_values, pos=0):
     current = [ordered_values[pos:pos+1]]
     if ':' in ordered_values[pos]:
         items = ordered_values[pos].split(':')
-        for i in xrange(1, len(items)):
+        for i in range(1, len(items)):
             current.append([':'.join(items[:i])])
 
     other = _computer_ordered_values_set(ordered_values, pos+1)
@@ -70,7 +70,7 @@ class FixedPointTransaction(object):
     def __init__(self, db, *args, **kwargs):
         self.db = db
         self.query = {}
-        for pt, pt_value in kwargs.iteritems():
+        for pt, pt_value in kwargs.items():
             if pt in DEFAULT_PREFIX:
                 self.query[pt] = pt_value
 
@@ -81,7 +81,7 @@ class FixedPointTransaction(object):
         if len(self.query) == 0:
             raise EmptyQueryException(self.query)
 
-        ks, vs = zip(*self.query.iteritems())
+        ks, vs = list(zip(*iter(self.query.items())))
         prefix = ''.join(ks)
         if len(prefix) < 3:
             prefix = self.SINGLE_QUERY_KEYS[''.join(prefix)]
